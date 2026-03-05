@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân Interactive Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #f97316;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* Transition mượt mà cho hiệu ứng nổi lên */
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                background-color 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hiệu ứng tia sáng chạy theo chuột */
+        .spotlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .interactive-card:hover .spotlight {
+            opacity: 1;
+        }
+
+        .dark .spotlight {
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
+        }
+
+        .animate-pop-in {
+            animation: popIn 0.6s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
+            opacity: 0;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+
+            body {
+                background: white !important;
+            }
+
+            .glass-card {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-blue-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen pb-12">
+
+
+
+    <div class="container mx-auto px-4 pt-12 max-w-6xl">
+
+        <header class="text-center mb-12 animate-pop-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-2 uppercase">
+                HỒ SƠ CÁ NHÂN | <span class="text-blue-600 dark:text-blue-400"> Bùi ĐỨc Hiệp</span>
+            </h1>
+            <div class="h-1.5 w-32 bg-orange-500 mx-auto rounded-full"></div>
+        </header>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-stretch">
+
+
+            <div class="lg:col-span-7 glass-card rounded-[2.5rem] animate-pop-in shadow-xl interactive-card"
+                style="animation-delay: 0.1s">
+                <div class="spotlight"></div>
+                <div class="card-header p-5 flex items-center gap-4">
+                    <div class="bg-white/20 p-3 rounded-2xl backdrop-blur-md">
+                        <i class="fas fa-user-circle text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-white font-bold text-xl uppercase tracking-wider">Thông tin cơ bản</h2>
+                </div>
+                <div class="p-8 flex flex-col md:flex-row items-center gap-8 relative z-10">
+                    <div class="relative group">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-orange-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000">
+                        </div>
+                        <img src="631519408_902505666071869_2998934797255379953_n.jpg" alt="Profile"
+                            class="relative w-40 h-40 bg-white rounded-full border-4 border-white shadow-inner object-cover">
+                    </div>
+                    <div class="flex-1 space-y-4 text-center md:text-left">
+                        <div>
+                            <span
+                                class="text-blue-600 dark:text-blue-400 font-bold uppercase text-xs tracking-widest">Vị
+                                trí hiện tại</span>
+                            <p class="text-2xl font-bold">Học sinh lớp 10B THPT GIA LỘC</p>
+                        </div>
+                        <div
+                            class="bg-blue-50 dark:bg-slate-800/50 p-4 rounded-2xl border-l-4 border-orange-500 shadow-sm">
+                            <span class="text-xs uppercase font-semibold text-gray-500 dark:text-gray-400">Slogan cá
+                                nhân</span>
+                            <p class="italic text-lg text-slate-700 dark:text-slate-300">"Bách Khoa Hà Nội – Một tình
+                                yêu, một tương lai"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="lg:col-span-5 glass-card rounded-[2.5rem] animate-pop-in shadow-xl interactive-card"
+                style="animation-delay: 0.2s">
+                <div class="spotlight"></div>
+                <div class="card-header p-5 flex items-center gap-4">
+                    <div class="bg-white/20 p-3 rounded-2xl backdrop-blur-md">
+                        <i class="fas fa-brain text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-white font-bold text-xl uppercase tracking-wider">Sở trường & Trình độ</h2>
+                </div>
+                <div class="p-8 space-y-5 relative z-10">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase">Chuyên môn</label>
+                        <p class="font-semibold text-lg">Kỹ thuật lập trình</p>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase">Kỹ năng mềm</label>
+                        <div class="flex flex-wrap gap-2 mt-1">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full text-sm font-medium">Giải
+                                quyết vấn đề</span>
+                            <span
+                                class="px-3 py-1 bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 rounded-full text-sm font-medium">Làm
+                                việc nhóm</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl text-center shadow-inner">
+                            <p class="text-[10px] uppercase font-bold text-gray-500">Ngoại ngữ</p>
+                            <p class="font-bold text-blue-600">A2</p>
+                        </div>
+                        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl text-center shadow-inner">
+                            <p class="text-[10px] uppercase font-bold text-gray-500">Học vấn</p>
+                            <p class="font-bold text-blue-600">Lớp 10 THPT GIA LỘC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="lg:col-span-6 glass-card rounded-[2.5rem] animate-pop-in shadow-xl interactive-card"
+                style="animation-delay: 0.3s">
+                <div class="spotlight"></div>
+                <div class="bg-blue-600 p-5 flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-white shadow-lg backdrop-blur-sm">
+                        <i class="fas fa-bullseye text-xl"></i>
+                    </div>
+                    <h2 class="text-white font-bold text-xl uppercase tracking-wider">Mục tiêu 3-5 năm tới</h2>
+                </div>
+                <div class="p-8 relative z-10">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="text-lg font-medium"> <span class="text-blue-600 font-bold dark:text-blue-400">Tốt
+                                    nghiệp THPT</span></p>
+                        </li>
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="text-lg font-medium">Trở thành sinh viên HUST</p>
+                        </li>
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="text-lg font-medium">Ra được trường</p>
+                        </li>
+                    </ul>
+                    <i
+                        class="fas fa-project-diagram absolute right-8 bottom-4 text-8xl text-blue-500/5 pointer-events-none"></i>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 glass-card rounded-[2.5rem] animate-pop-in shadow-xl interactive-card"
+                style="animation-delay: 0.4s">
+                <div class="spotlight"></div>
+                <div class="bg-blue-600 p-5 flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-white shadow-lg backdrop-blur-sm">
+                        <i class="fas fa-rocket text-xl"></i>
+                    </div>
+                    <h2 class="text-white font-bold text-xl uppercase tracking-wider">Định hướng 10 năm</h2>
+                </div>
+                <div class="p-8 relative z-10">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-lg font-medium">Vị trí <span class="text-orange-600 font-bold">Chuyên gia
+                                    công nghệ
+                                </span></p>
+                        </li>
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-lg font-medium">Trở thành chuyên gia có ảnh hưởng trong lĩnh vực công nghệ
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4 transform transition-transform hover:translate-x-2">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-[10px] text-white shadow-md">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-lg font-medium"> Phát triển sự nghiệp trong lĩnh vực công nghệ và đổi mới
+                                sáng tạo
+                            </p>
+                        </li>
+                    </ul>
+                    <i
+                        class="fas fa-map-marked-alt absolute right-8 bottom-4 text-8xl text-orange-500/5 pointer-events-none"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+
+
+
+
+
+
+
+            const interactiveCards = document.querySelectorAll('.interactive-card');
+
+            interactiveCards.forEach(card => {
+                const spotlight = card.querySelector('.spotlight');
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (centerY - y) / 25;
+                    const rotateY = (x - centerX) / 25;
+
+                    requestAnimationFrame(() => {
+                        card.classList.add('is-floating');
+
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    requestAnimationFrame(() => {
+                        card.classList.remove('is-floating');
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    });
+                });
+            });
+        </script>
+</body>
+
+</html>
